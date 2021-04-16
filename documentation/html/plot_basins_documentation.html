@@ -1,0 +1,185 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>plot_basins documentation</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-24"><meta name="DC.source" content="plot_basins_documentation.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>plot_basins</tt> documentation</h1><!--introduction--><p><tt>plot_basins</tt> plots Antarctic drainage basins on a ps71 map. These are the IMBIE or IMBIE Refined basins in the MEaSURES Antarctic Boundaries for IPY 2007-2009 from Satellite Radar dataset Version 2.</p><p>The Antarctic Boundaries dataset is described on the NSIDC site <a href="http://nsidc.org/data/NSIDC-0709">here</a>. An overview of the tools in this AMT plugin can be found <a href="Antbounds_Contents.html">here</a>.</p><p>(For Zwally's basins instead use <a href="https://www.mathworks.com/matlabcentral/fileexchange/47639"><tt>basinsps</tt></a>.)</p><p><img vspace="5" hspace="5" src="plot_basins_demo.png" alt=""> </p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">IMBIE Examples</a></li><li><a href="#7">IMBIE Refined Examples</a></li><li><a href="#10">Citing this dataset</a></li><li><a href="#11">Author Info</a></li></ul></div><h2 id="1">Syntax</h2><pre>plot_basins(basinDataset)
+plot_basins(basinDataset,'basin',BasinName)
+plot_basins(...,PropertyName,PropertyValue,...)
+plot_basins(...,'polyshape')
+plot_basins(...,'km')
+plot_basins('demo')
+h = plot_basins(...)</pre><h2 id="2">Description</h2><p><tt>plot_basins(basinDataset)</tt> plots either <tt>'imbie'</tt> or <tt>'imbie refined'</tt> basins. (For Zwally's basins instead use <a href="https://www.mathworks.com/matlabcentral/fileexchange/47639"><tt>basinsps</tt></a>.)</p><p><tt>plot_basins(basinDataset,'basin',BasinName)</tt> plots a single basin by name. For a visual depiction of basin names, type <tt>plot_basins('demo')</tt>.</p><p>plot_basins(...,PropertyName,PropertyValue,...) specifies line or patch properties.</p><p>plot_basins(...,'polyshape') plots outlines as filled polyshape (patch) objects rather than the default line objects.</p><p>plot_basins(...,'km') plots in polar stereographic kilometers rather than the default meters.</p><p>plot_basins('demo') creates a figure like the one above, showing labeled IMBIE and IMBIE refined basins.</p><p>h = plot_basins(...) returns a handle h of plotted object(s).</p><h2 id="3">IMBIE Examples</h2><p>Plot the original 19 IMBIE basins:</p><pre class="codeinput">plot_basins(<span class="string">'imbie'</span>)
+</pre><img vspace="5" hspace="5" src="plot_basins_documentation_01.png" alt=""> <p>Overlay the K-A basin outlined in thick red:</p><pre class="codeinput">plot_basins(<span class="string">'imbie'</span>,<span class="string">'basin'</span>,<span class="string">'K-A'</span>,<span class="string">'linewidth'</span>,3,<span class="string">'color'</span>,<span class="string">'r'</span>)
+</pre><img vspace="5" hspace="5" src="plot_basins_documentation_02.png" alt=""> <p>If you have Matlab R2017b or later, you can use the <tt>'polyshape'</tt> option to create filled patch areas. Let's fill in the Ap-B basin:</p><pre class="codeinput">plot_basins(<span class="string">'imbie'</span>,<span class="string">'basin'</span>,<span class="string">'Ap-B'</span>,<span class="string">'polyshape'</span>)
+</pre><img vspace="5" hspace="5" src="plot_basins_documentation_03.png" alt=""> <p>Same as above, but specify patch properties rather than using the defaults:</p><pre class="codeinput">plot_basins(<span class="string">'imbie'</span>,<span class="string">'basin'</span>,<span class="string">'Ep-F'</span>,<span class="string">'polyshape'</span>,<span class="keyword">...</span>
+   <span class="string">'facecolor'</span>,<span class="string">'green'</span>,<span class="string">'facealpha'</span>,1)
+</pre><img vspace="5" hspace="5" src="plot_basins_documentation_04.png" alt=""> <h2 id="7">IMBIE Refined Examples</h2><p>The 199 IMBIE refined basins are named a bit more intuitively than the standard IMBIE basins, and can be used to investigate processes for a single glacier. Let's make a new figure and take a look at the refined IMBIE basins:</p><pre class="codeinput">figure
+plot_basins(<span class="string">'imbie refined'</span>,<span class="string">'polyshape'</span>)
+</pre><img vspace="5" hspace="5" src="plot_basins_documentation_05.png" alt=""> <p>And to see how they align with the original IMBIE basins, overlay the originals in thick orange lines:</p><pre class="codeinput">plot_basins(<span class="string">'imbie'</span>,<span class="string">'linewidth'</span>,3,<span class="string">'color'</span>,[.98 .45 .02])
+</pre><img vspace="5" hspace="5" src="plot_basins_documentation_06.png" alt=""> <p>And just for good measure we'll highlight the Totten basin:</p><pre class="codeinput">plot_basins(<span class="string">'imbie refined'</span>,<span class="string">'polyshape'</span>,<span class="string">'basin'</span>,<span class="string">'totten'</span>)
+</pre><img vspace="5" hspace="5" src="plot_basins_documentation_07.png" alt=""> <h2 id="10">Citing this dataset</h2><p>If you use this dataset, please cite the following:</p><div><ul><li><b>The dataset:</b> Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. <a href="http://dx.doi.org/10.5067/AXE4121732AD">http://dx.doi.org/10.5067/AXE4121732AD</a>.</li></ul></div><div><ul><li><b>Literature citation:</b> Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, Science. 341. 266-270. <a href="http://dx.doi.org/10.1126/science.1235798">http://dx.doi.org/10.1126/science.1235798</a>.</li></ul></div><div><ul><li><b>Antarctic Mapping Tools:</b> Greene, C. A., Gwyther, D. E., &amp; Blankenship, D. D. Antarctic Mapping Tools for Matlab. <i>Computers &amp; Geosciences</i>. 104 (2017) pp.151-157. <a href="http://dx.doi.org/10.1016/j.cageo.2016.08.003">doi:10.1016/j.cageo.2016.08.003</a>.</li></ul></div><h2 id="11">Author Info</h2><p>This function and supporting documentation were written by <a href="http://www.chadagreene.com">Chad A. Greene</a> of the University of Texas Institute for Geophysics (UTIG), May 2018.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |plot_basins| documentation 
+% |plot_basins| plots Antarctic drainage basins on a ps71 map. 
+% These are the IMBIE or IMBIE Refined basins in the MEaSURES Antarctic Boundaries 
+% for IPY 2007-2009 from Satellite Radar dataset Version 2. 
+% 
+% The Antarctic Boundaries dataset is described on the NSIDC site <http://nsidc.org/data/NSIDC-0709 here>. 
+% An overview of the tools in this AMT plugin can be found <Antbounds_Contents.html here>.
+% 
+% (For Zwally's basins instead use <https://www.mathworks.com/matlabcentral/fileexchange/47639 |basinsps|>.)
+%  
+% <<plot_basins_demo.png>>
+%% Syntax 
+% 
+%  plot_basins(basinDataset)
+%  plot_basins(basinDataset,'basin',BasinName) 
+%  plot_basins(...,PropertyName,PropertyValue,...)
+%  plot_basins(...,'polyshape')
+%  plot_basins(...,'km') 
+%  plot_basins('demo') 
+%  h = plot_basins(...) 
+% 
+%% Description 
+% 
+% |plot_basins(basinDataset)| plots either |'imbie'| or |'imbie refined'| basins. 
+% (For Zwally's basins instead use <https://www.mathworks.com/matlabcentral/fileexchange/47639 |basinsps|>.)
+% 
+% |plot_basins(basinDataset,'basin',BasinName)| plots a single basin by name. For a visual
+% depiction of basin names, type |plot_basins('demo')|. 
+% 
+% plot_basins(...,PropertyName,PropertyValue,...) specifies line or patch properties. 
+% 
+% plot_basins(...,'polyshape') plots outlines as filled polyshape (patch) objects rather
+% than the default line objects. 
+% 
+% plot_basins(...,'km') plots in polar stereographic kilometers rather than the default meters. 
+% 
+% plot_basins('demo') creates a figure like the one above, showing labeled IMBIE and IMBIE refined basins. 
+% 
+% h = plot_basins(...) returns a handle h of plotted object(s). 
+% 
+%% IMBIE Examples 
+% Plot the original 19 IMBIE basins: 
+
+plot_basins('imbie') 
+
+%% 
+% Overlay the K-A basin outlined in thick red: 
+
+plot_basins('imbie','basin','K-A','linewidth',3,'color','r')
+
+%% 
+% If you have Matlab R2017b or later, you can use the |'polyshape'| option 
+% to create filled patch areas. Let's fill in the Ap-B basin: 
+
+plot_basins('imbie','basin','Ap-B','polyshape')
+
+%% 
+% Same as above, but specify patch properties rather than using the defaults: 
+
+plot_basins('imbie','basin','Ep-F','polyshape',...
+   'facecolor','green','facealpha',1)
+
+%% IMBIE Refined Examples 
+% The 199 IMBIE refined basins are named a bit more intuitively than the 
+% standard IMBIE basins, and can be used to investigate processes for a single glacier. 
+% Let's make a new figure and take a look at the refined IMBIE basins: 
+
+figure
+plot_basins('imbie refined','polyshape') 
+
+%% 
+% And to see how they align with the original IMBIE basins, overlay the originals
+% in thick orange lines: 
+
+plot_basins('imbie','linewidth',3,'color',[.98 .45 .02])
+
+%% 
+% And just for good measure we'll highlight the Totten basin: 
+
+plot_basins('imbie refined','polyshape','basin','totten') 
+
+%% Citing this dataset
+% If you use this dataset, please cite the following: 
+% 
+% * *The dataset:* Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from 
+% Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed 
+% Active Archive Center. http://dx.doi.org/10.5067/AXE4121732AD. 
+% 
+% * *Literature citation:* Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, 
+% Science. 341. 266-270. http://dx.doi.org/10.1126/science.1235798. 
+% 
+% * *Antarctic Mapping Tools:* Greene, C. A., Gwyther, D. E., & Blankenship, D. D. Antarctic Mapping Tools for Matlab. 
+% _Computers & Geosciences_. 104 (2017) pp.151-157. <http://dx.doi.org/10.1016/j.cageo.2016.08.003 doi:10.1016/j.cageo.2016.08.003>.
+% 
+%% Author Info
+% This function and supporting documentation were written by <http://www.chadagreene.com Chad A. Greene> of the University
+% of Texas Institute for Geophysics (UTIG), May 2018. 
+
+##### SOURCE END #####
+--></body></html>

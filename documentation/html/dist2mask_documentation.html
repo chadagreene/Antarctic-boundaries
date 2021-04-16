@@ -1,0 +1,173 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>dist2mask documentation</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-24"><meta name="DC.source" content="dist2mask_documentation.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>dist2mask</tt> documentation</h1><!--introduction--><p><tt>dist2mask</tt> returns the distance in kilometers from given datapoints to any mask type (grounded, iceshelf, etc.) according to MEaSURES Antarctic Boundaries for IPY 2007-2009 from Satellite Radar, Version 2. This function is similar to the <a href="http://www.mathworks.com/matlabcentral/fileexchange/42353-bedmap2-toolbox-for-matlab/content/bedmap2_toolbox_v4.6/Bedmap2_documentation/html/bedmap2_dist_documentation.html"><tt>bedmap2_dist</tt></a> function in the Bedmap2 Toolbox.</p><p>The Antarctic Boundaries dataset is described on the NSIDC site <a href="http://nsidc.org/data/NSIDC-0709">here</a>. An overview of the tools in this AMT plugin can be found <a href="Antbounds_Contents.html">here</a>.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#5">Contouring distances from the coast</a></li><li><a href="#7">Citing this dataset</a></li><li><a href="#8">Author Info</a></li></ul></div><h2 id="1">Syntax</h2><pre>d = dist2mask(masktype,lati,loni)
+d = dist2mask(masktype,xi,yi)</pre><h2 id="2">Description</h2><p><tt>d = dist2mask(masktype,lati,loni)</tt> gives the distance <tt>d</tt> from the geo locations <tt>(lati,loni)</tt> to the nearest mask type, which can be any of the following:</p><div><ul><li><tt>'grounded'</tt>  all ice or rocks on the landward side of the InSAR-detected landward limit of flexure.</li><li><tt>'iceshelf'</tt>  all the bits of the ice sheet (not sea ice) on the seaward side of the landward limit of flexure.</li><li><tt>'ice'</tt>       any part of the ice sheet (not sea ice).</li><li><tt>'openocean'</tt> any part of the open ocean (not ice shelves or sea ice).</li><li><tt>'tidal'</tt>     everything seaward of the landward limit of flexure, including ice shelves.</li></ul></div><p><tt>d = dist2mask(masktype,xi,yi)</tt> is the same as above, except coordinates are polar stereographic meters (ps71), which are automatically parsed by the <tt>islatlon</tt> function.</p><h2 id="3">Example</h2><p>Given these scattered points, let's say it's mooring data:</p><pre class="codeinput">lat = -70+4*randn(50,1);
+lon = -45+6*randn(50,1);
+
+plotps(lat,lon,<span class="string">'ko'</span>);
+antbounds(<span class="string">'coast'</span>,<span class="string">'poly'</span>,<span class="string">'facecolor'</span>,0.5*[1 1 1],<span class="string">'facealpha'</span>,1)
+</pre><img vspace="5" hspace="5" src="dist2mask_documentation_01.png" alt=""> <p>Suppose you want to know the distance of each mooring to the nearest bit of ice sheet:</p><pre class="codeinput">d = dist2mask(<span class="string">'ice'</span>,lat,lon);
+
+scatterps(lat,lon,50,d,<span class="string">'filled'</span>)
+cb = colorbar;
+ylabel(cb,<span class="string">' distance from coast (km) '</span>)
+mapzoomps(<span class="string">'ne'</span>,<span class="string">'frame'</span>,<span class="string">'off'</span>) <span class="comment">% places an inset map in the corner</span>
+</pre><img vspace="5" hspace="5" src="dist2mask_documentation_02.png" alt=""> <h2 id="5">Contouring distances from the coast</h2><p>Sometimes you might want to plot a line a given distance from the coast, say, to show effects within 100, 500, and 1000 km from the coast. To do that, make a grid that fills your domain. Let's make a grid that fills the current axis limits, then calculate the distance to the coast for each grid point:</p><pre class="codeinput">xl = xlim; <span class="comment">% limits of current axes</span>
+yl = ylim;
+[X,Y] = meshgrid(xl(1):1000:xl(2),yl(1):1000:yl(2));
+
+D = dist2mask(<span class="string">'ice'</span>,X,Y);
+</pre><p>Now contour the 100, 500, and 1000 km distances from the coast:</p><pre class="codeinput">hold <span class="string">on</span>
+[C,h] = contour(X,Y,D,[100 500 1000],<span class="string">'k'</span>);
+clabel(C,h) <span class="comment">% labels the contours</span>
+</pre><img vspace="5" hspace="5" src="dist2mask_documentation_03.png" alt=""> <h2 id="7">Citing this dataset</h2><p>If you use this dataset, please cite the following:</p><div><ul><li><b>Dataset citation:</b> Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. <a href="http://dx.doi.org/10.5067/AXE4121732AD">http://dx.doi.org/10.5067/AXE4121732AD</a>.</li></ul></div><div><ul><li><b>Literature citation:</b> Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, Science. 341. 266-270. <a href="http://dx.doi.org/10.1126/science.1235798">http://dx.doi.org/10.1126/science.1235798</a>.</li></ul></div><div><ul><li><b>Antarctic Mapping Tools:</b> Greene, C. A., Gwyther, D. E., &amp; Blankenship, D. D. Antarctic Mapping Tools for Matlab. <i>Computers &amp; Geosciences</i>. 104 (2017) pp.151-157. <a href="http://dx.doi.org/10.1016/j.cageo.2016.08.003">doi:10.1016/j.cageo.2016.08.003</a>.</li></ul></div><h2 id="8">Author Info</h2><p>This function and supporting documentation were written by <a href="http://www.chadagreene.com">Chad A. Greene</a> of the University of Texas Institute for Geophysics (UTIG), November 2016.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |dist2mask| documentation 
+% |dist2mask| returns the distance in kilometers from given datapoints to any mask type (grounded, iceshelf, etc.) 
+% according to MEaSURES Antarctic Boundaries for IPY 2007-2009 from Satellite Radar, Version 2. This function is
+% similar to the <http://www.mathworks.com/matlabcentral/fileexchange/42353-bedmap2-toolbox-for-matlab/content/bedmap2_toolbox_v4.6/Bedmap2_documentation/html/bedmap2_dist_documentation.html
+% |bedmap2_dist|> function in the Bedmap2 Toolbox. 
+% 
+% The Antarctic Boundaries dataset is described on the NSIDC site <http://nsidc.org/data/NSIDC-0709 here>. 
+% An overview of the tools in this AMT plugin can be found <Antbounds_Contents.html here>.
+% 
+%% Syntax
+%
+%  d = dist2mask(masktype,lati,loni)
+%  d = dist2mask(masktype,xi,yi) 
+% 
+%% Description 
+%
+% |d = dist2mask(masktype,lati,loni)| gives the distance |d| from the geo locations |(lati,loni)| to the nearest mask
+% type, which can be any of the following: 
+% 
+% * |'grounded'|  all ice or rocks on the landward side of the InSAR-detected landward limit of flexure.
+% * |'iceshelf'|  all the bits of the ice sheet (not sea ice) on the seaward side of the landward limit of flexure.
+% * |'ice'|       any part of the ice sheet (not sea ice).
+% * |'openocean'| any part of the open ocean (not ice shelves or sea ice).
+% * |'tidal'|     everything seaward of the landward limit of flexure, including ice shelves. 
+%
+% |d = dist2mask(masktype,xi,yi)| is the same as above, except coordinates are polar stereographic meters (ps71), which
+% are automatically parsed by the |islatlon| function. 
+% 
+%% Example
+% Given these scattered points, let's say it's mooring data: 
+
+lat = -70+4*randn(50,1);
+lon = -45+6*randn(50,1);
+
+plotps(lat,lon,'ko');
+antbounds('coast','poly','facecolor',0.5*[1 1 1],'facealpha',1) 
+
+%% 
+% Suppose you want to know the distance of each mooring to the nearest bit of ice sheet: 
+
+d = dist2mask('ice',lat,lon); 
+
+scatterps(lat,lon,50,d,'filled') 
+cb = colorbar; 
+ylabel(cb,' distance from coast (km) ') 
+mapzoomps('ne','frame','off') % places an inset map in the corner
+
+%% Contouring distances from the coast
+% Sometimes you might want to plot a line a given distance from the coast, say, to show
+% effects within 100, 500, and 1000 km from the coast. To do that, make a grid that fills your domain. 
+% Let's make a grid that fills the current axis limits, then calculate
+% the distance to the coast for each grid point: 
+
+xl = xlim; % limits of current axes
+yl = ylim; 
+[X,Y] = meshgrid(xl(1):1000:xl(2),yl(1):1000:yl(2)); 
+
+D = dist2mask('ice',X,Y); 
+%% 
+% Now contour the 100, 500, and 1000 km distances from the coast: 
+
+hold on
+[C,h] = contour(X,Y,D,[100 500 1000],'k'); 
+clabel(C,h) % labels the contours
+
+%% Citing this dataset
+% If you use this dataset, please cite the following: 
+% 
+% * *Dataset citation:* Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from 
+% Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice 
+% Data Center Distributed Active Archive Center. http://dx.doi.org/10.5067/AXE4121732AD. 
+% 
+% * *Literature citation:* Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, 
+% Science. 341. 266-270. http://dx.doi.org/10.1126/science.1235798. 
+% 
+% * *Antarctic Mapping Tools:* Greene, C. A., Gwyther, D. E., & Blankenship, D. D. Antarctic Mapping Tools for Matlab. 
+% _Computers & Geosciences_. 104 (2017) pp.151-157. <http://dx.doi.org/10.1016/j.cageo.2016.08.003 doi:10.1016/j.cageo.2016.08.003>.
+% 
+%% Author Info
+% This function and supporting documentation were written by <http://www.chadagreene.com Chad A. Greene> of the University
+% of Texas Institute for Geophysics (UTIG), November 2016. 
+##### SOURCE END #####
+--></body></html>

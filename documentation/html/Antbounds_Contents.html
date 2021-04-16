@@ -1,0 +1,286 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Antbounds Contents and data masking tips</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-24"><meta name="DC.source" content="Antbounds_Contents.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Antbounds Contents and data masking tips</h1><!--introduction--><p>The functions in this plugin for <a href="https://www.mathworks.com/matlabcentral/fileexchange/47638">Antarctic Mapping Tools for Matlab</a> are intended to simplify the process of Antarctic data masking and mapmaking.  These functions are built on the MEaSURES Antarctic Boundaries for IPY 2007-2009 from Satellite Radar dataset Version 2, which has been kindly provided by Mouginot et al. (see citation below) and is described in full on the NSIDC site <a href="http://nsidc.org/data/NSIDC-0709">here</a>. All necessary data are included in this File Exchange submission, so you don't need to download anything from the NSIDC.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Data Access</a></li><li><a href="#2">Interpolation and masking functions</a></li><li><a href="#3">Data plotting</a></li><li><a href="#4">Tips for data masking</a></li><li><a href="#19">Citing this dataset</a></li><li><a href="#20">Author Info</a></li></ul></div><h2 id="1">Data Access</h2><p>If you have downloaded this toolbox, you have all the data you need. These functions make it easy to import the grounding lines, coast lines, ice shelf outlines, and ice basins into Matlab:</p><div><ul><li><a href="antbounds_data_documentation.html"><tt>antbounds_data</tt></a> lets you easily load grounding line, coast, or ice shelf outline data.  The grounding line in this dataset is obtained by the same InSAR methods which were used for the <a href="https://www.mathworks.com/matlabcentral/fileexchange/47329-measures/content/measures/html/measures_data_documentation.html"><tt>measures_data</tt></a> grounding line; however, the <tt>antbounds_data</tt> is continuous around the continent and represents only a single snapshot in time (2008), whereas the <tt>measures_data</tt> is discontinous and lets you see grounding line evolution through time.</li><li><a href="basin_data_documentation.html"><tt>basin_data</tt></a> loads IMBIE or IMBIE Refined basins.</li></ul></div><h2 id="2">Interpolation and masking functions</h2><p>This toolbox contains five functions which are optimized to load Mouginot et al.'s Mask_Antarctica data and and interpolate to determine whether locations correspond to grounded ice, ice shelves, open ocean, etc. The <tt>inbasin</tt> function works the same way, and is convenient for limiting your dataset to contain only values within a given ice basin. In my work, I've found these functions and <tt>dist2mask</tt> have become absolutely invaluable. I hope they're just as helpful for you.</p><div><ul><li><a href="isgrounded_documentation.html"><tt>isgrounded</tt></a> determines whether input coordinates correspond to grounded ice.</li><li><a href="isiceshelf_documentation.html"><tt>isiceshelf</tt></a> determines whether input coordinates correspond to ice shelf.</li><li><a href="isopenocean_documentation.html"><tt>isopenocean</tt></a> determines whether input coordinates correspond to open ocean (no grounded ice, and no ice shelves, but sea ice is considered open ocean).</li><li><a href="isice_documentation.html"><tt>isice</tt></a> determines whether input coordinates correspond to any part of the ice sheet, grounded ice or ice shelves. This is the logical NOT of <tt>isopenocean</tt>.</li><li><a href="istidal_documentation.html"><tt>istidal</tt></a> determines whether input coordinates are seaward of the landward limit of flexure as measured by InSAR. This is the logical NOT of <tt>isgrounded</tt>.</li><li><a href="inbasin_documentation.html"><tt>inbasin</tt></a> determines which input coordinates are within a given ice basin.</li><li><a href="dist2mask_documentation.html"><tt>dist2mask</tt></a> calculates the distance from any point(s) to the nearest mask type. This can be useful if you want to plot data as a function of distance from the grounding line, or if you have a bunch of mooring data, and you only want to consider the moorings that were collected within some number of kilometers of an ice shelf front. This is similar to the <a href="http://www.mathworks.com/matlabcentral/fileexchange/42353-bedmap2-toolbox-for-matlab/content/bedmap2_toolbox_v4.6/Bedmap2_documentation/html/bedmap2_dist_documentation.html"><tt>bedmap2_dist</tt></a> function found in the Bedmap2 plugin for AMT.</li></ul></div><h2 id="3">Data plotting</h2><p>These functions make plotting pretty easy:</p><div><ul><li><a href="antbounds_documentation.html"><tt>antbounds</tt></a> simply plots the line data given by <tt>antbounds_data</tt>.</li><li><a href="labelshelves_documentation.html"><tt>labelshelves</tt></a> simply labels the ice shelves plotted by the <tt>antbounds</tt> function.</li><li><a href="plot_basins_documentation.html"><tt>plot_basins</tt></a> plots IMBIE or IMBIE Refined ice drainage basin boundaries.</li></ul></div><h2 id="4">Tips for data masking</h2><p>If you're working with a dataset that comes with its own mask (e.g., Bedmap2, RTopo-2, etc.), it might make sense to use the masks associated with those datasets.  Otherwise, the logical <tt>is*</tt> functions listed above are in many cases the easiest to work with.  For example, consider this 50 km resolution grid over Dronning Maud Land, which we create with <a href="http://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/content/AntarcticMappingTools/Documentation/html/psgrid_documentation.html"><tt>psgrid</tt></a>:</p><pre class="codeinput">[lat,lon] = psgrid(<span class="string">'dronning maud land'</span>,3000,50);
+</pre><p>Plot the grid, a grounding line, and a coast line for context:</p><pre class="codeinput">plotps(lat,lon,<span class="string">'.'</span>,<span class="string">'color'</span>,0.8*[1 1 1])
+hold <span class="string">on</span>
+axis <span class="string">tight</span>
+antbounds(<span class="string">'gl'</span>,<span class="string">'black'</span>)
+antbounds(<span class="string">'coast'</span>,<span class="string">'black'</span>)
+mapzoomps(<span class="string">'nw'</span>)
+</pre><img vspace="5" hspace="5" src="Antbounds_Contents_01.png" alt=""> <p>To determine which grid points correspond to open ocean, use <tt>isopenocean</tt>:</p><pre class="codeinput">ocean = isopenocean(lat,lon);
+plotps(lat(ocean),lon(ocean),<span class="string">'bo'</span>)
+</pre><img vspace="5" hspace="5" src="Antbounds_Contents_02.png" alt=""> <p>Perhaps your work is on Baudouin Ice Shelf. Outline it with a thick red line:</p><pre class="codeinput">antbounds(<span class="string">'Baudouin'</span>,<span class="string">'r'</span>,<span class="string">'linewidth'</span>,2);
+</pre><img vspace="5" hspace="5" src="Antbounds_Contents_03.png" alt=""> <p>How many grid cells correspond to Baudouin Ice Shelf?</p><pre class="codeinput">baudouin = isiceshelf(lat,lon,<span class="string">'Baudouin'</span>);
+sum(baudouin(:))
+</pre><pre class="codeoutput">ans =
+         13.00
+</pre><p>Okay, so 13 grid cells correspond to Baudouin Ice Shelf. Plot them in as large red x marks:</p><pre class="codeinput">plotps(lat(baudouin),lon(baudouin),<span class="string">'rx'</span>,<span class="string">'markersize'</span>,10)
+</pre><img vspace="5" hspace="5" src="Antbounds_Contents_04.png" alt=""> <p>And we can add some junk to the map if we so desire:</p><pre class="codeinput">labelshelves(<span class="string">'fontsize'</span>,10)
+scalebarps(<span class="string">'location'</span>,<span class="string">'se'</span>)
+graticuleps
+</pre><img vspace="5" hspace="5" src="Antbounds_Contents_05.png" alt=""> <p>Never heard of Baudouin Ice Shelf? Well guess how big it is:</p><pre class="codeinput">[x,y] = antbounds_data(<span class="string">'baudouin'</span>,<span class="string">'xy'</span>);
+
+pgon = polyshape(x/1000,y/1000,<span class="string">'Simplify'</span>,false); <span class="comment">% req's R2017b+</span>
+area(pgon)
+</pre><pre class="codeoutput">ans =
+      33129.24
+</pre><p>So 33,000 km^2, or about the size of Moldova. Similarly, we can see how large of an area each major glacier drains using the <tt>basin_data</tt> function. For example, Totten:</p><pre class="codeinput">[x_tot,y_tot] = basin_data(<span class="string">'imbie refined'</span>,<span class="string">'totten'</span>,<span class="string">'xy'</span>);
+
+figure
+plot(x_tot,y_tot)
+axis <span class="string">image</span> <span class="comment">% removes whitespace, sets equal aspect ratio</span>
+</pre><img vspace="5" hspace="5" src="Antbounds_Contents_06.png" alt=""> <p>And Totten drains an area of</p><pre class="codeinput">pgon = polyshape(x_tot/1000,y_tot/1000,<span class="string">'Simplify'</span>,false); <span class="comment">% req's R2017b+</span>
+area(pgon)
+</pre><pre class="codeoutput">ans =
+     549820.89
+</pre><p>About 550,000 km^2, or about the size of Spain. What's the average ice thickness in the Totten basin? We can load the bedmap2 data surrounding the Totten basin like this:</p><pre class="codeinput">[lat,lon,thickness] = bedmap2_data(<span class="string">'thickness'</span>,x_tot,y_tot);
+</pre><p>Determine which Bedmap2 grid cells are drained by Totten (takes a few seconds):</p><pre class="codeinput">totten = inbasin(lat,lon,<span class="string">'imbie refined'</span>,<span class="string">'totten'</span>);
+</pre><p>The Bedmap2 dataset is 1 km by 1 km, so the total number of grid cells should be about the same as the drainage basin area we calculated above:</p><pre class="codeinput">sum(totten(:))
+</pre><pre class="codeoutput">ans =
+     549838.00
+</pre><p>And that looks like we're on the right track. The average ice thickness drained by Totten Glacier is simply</p><pre class="codeinput">mean(thickness(totten))
+</pre><pre class="codeoutput">ans =
+       3243.40
+</pre><p>About 3.2 km thick.</p><p>We can mask out everything except the ice drained by Totten and plot:</p><pre class="codeinput">thickness(~totten) = NaN;
+pcolorps(lat,lon,thickness)
+cb = colorbar;
+ylabel(cb,<span class="string">'ice thickness (m)'</span>)
+</pre><img vspace="5" hspace="5" src="Antbounds_Contents_07.png" alt=""> <h2 id="19">Citing this dataset</h2><p>If you use this dataset, please cite the following:</p><div><ul><li><b>The dataset:</b> Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. <a href="http://dx.doi.org/10.5067/AXE4121732AD">http://dx.doi.org/10.5067/AXE4121732AD</a>.</li></ul></div><div><ul><li><b>Literature citation:</b> Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, Science. 341. 266-270. <a href="http://dx.doi.org/10.1126/science.1235798">http://dx.doi.org/10.1126/science.1235798</a>.</li></ul></div><div><ul><li><b>Antarctic Mapping Tools:</b> Greene, C. A., Gwyther, D. E., &amp; Blankenship, D. D. Antarctic Mapping Tools for Matlab. <i>Computers &amp; Geosciences</i>. 104 (2017) pp.151-157. <a href="http://dx.doi.org/10.1016/j.cageo.2016.08.003">doi:10.1016/j.cageo.2016.08.003</a>.</li></ul></div><h2 id="20">Author Info</h2><p>This toolbox and supporting documentation were written by <a href="http://www.chadagreene.com">Chad A. Greene</a> of the University of Texas Institute for Geophysics (UTIG), November 2016. Updated May 2017 for version 2 of the dataset.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Antbounds Contents and data masking tips
+% The functions in this plugin for <https://www.mathworks.com/matlabcentral/fileexchange/47638 Antarctic Mapping Tools for Matlab> 
+% are intended to simplify the process of Antarctic data masking and mapmaking.  These functions are built on the MEaSURES Antarctic Boundaries 
+% for IPY 2007-2009 from Satellite Radar dataset Version 2, which has been kindly provided by Mouginot et al. (see citation below) 
+% and is described in full on the NSIDC site <http://nsidc.org/data/NSIDC-0709 here>. All necessary data are included in this File Exchange
+% submission, so you don't need to download anything from the NSIDC. 
+
+%% Data Access
+% If you have downloaded this toolbox, you have all the data you need. These functions make it easy to import
+% the grounding lines, coast lines, ice shelf outlines, and ice basins into Matlab: 
+% 
+% * <antbounds_data_documentation.html |antbounds_data|> lets you easily load grounding line, coast, or ice shelf
+% outline data.  The grounding line in this dataset is obtained by the same InSAR methods which were used for the
+% <https://www.mathworks.com/matlabcentral/fileexchange/47329-measures/content/measures/html/measures_data_documentation.html 
+% |measures_data|> grounding line; however, the |antbounds_data| is continuous around the continent and represents only
+% a single snapshot in time (2008), whereas the |measures_data| is discontinous and lets you see grounding line evolution through time. 
+% * <basin_data_documentation.html |basin_data|> loads IMBIE or IMBIE Refined basins. 
+% 
+%% Interpolation and masking functions
+% This toolbox contains five functions which are optimized to load Mouginot et al.'s Mask_Antarctica data and 
+% and interpolate to determine whether locations correspond to grounded ice, ice shelves, open ocean, etc. The |inbasin|
+% function works the same way, and is convenient for limiting your dataset to contain only values within a given 
+% ice basin. In my work, I've found these functions and |dist2mask| have become absolutely invaluable. I hope they're just
+% as helpful for you. 
+% 
+% * <isgrounded_documentation.html |isgrounded|> determines whether input coordinates correspond to grounded ice. 
+% * <isiceshelf_documentation.html |isiceshelf|> determines whether input coordinates correspond to ice shelf. 
+% * <isopenocean_documentation.html |isopenocean|> determines whether input coordinates correspond to open ocean (no grounded ice, 
+% and no ice shelves, but sea ice is considered open ocean). 
+% * <isice_documentation.html |isice|> determines whether input coordinates correspond to any part of the ice sheet, grounded ice or 
+% ice shelves. This is the logical NOT of |isopenocean|.
+% * <istidal_documentation.html |istidal|> determines whether input coordinates are seaward of the landward limit of flexure as
+% measured by InSAR. This is the logical NOT of |isgrounded|. 
+% * <inbasin_documentation.html |inbasin|> determines which input coordinates are within a given ice basin.
+% * <dist2mask_documentation.html |dist2mask|> calculates the distance from any point(s) to the nearest mask type. 
+% This can be useful if you want to plot data as a function of distance from the grounding line, or if you have a bunch of 
+% mooring data, and you only want to consider the moorings that were collected within some number of kilometers of an ice 
+% shelf front. This is similar to the <http://www.mathworks.com/matlabcentral/fileexchange/42353-bedmap2-toolbox-for-matlab/content/bedmap2_toolbox_v4.6/Bedmap2_documentation/html/bedmap2_dist_documentation.html
+% |bedmap2_dist|> function found in the Bedmap2 plugin for AMT. 
+
+%% Data plotting 
+% These functions make plotting pretty easy:
+% 
+% * <antbounds_documentation.html |antbounds|> simply plots the line data given by |antbounds_data|. 
+% * <labelshelves_documentation.html |labelshelves|> simply labels the ice shelves plotted by the |antbounds| function. 
+% * <plot_basins_documentation.html |plot_basins|> plots IMBIE or IMBIE Refined ice drainage basin boundaries. 
+
+%% Tips for data masking
+% If you're working with a dataset that comes with its own mask (e.g., Bedmap2, RTopo-2, etc.), it might make sense to
+% use the masks associated with those datasets.  Otherwise, the logical |is*| functions listed above are in many cases the easiest
+% to work with.  For example, consider this 50 km resolution grid over Dronning Maud Land, which we create with 
+% <http://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/content/AntarcticMappingTools/Documentation/html/psgrid_documentation.html 
+% |psgrid|>: 
+
+[lat,lon] = psgrid('dronning maud land',3000,50); 
+
+%% 
+% Plot the grid, a grounding line, and a coast line for context: 
+
+plotps(lat,lon,'.','color',0.8*[1 1 1])
+hold on
+axis tight
+antbounds('gl','black') 
+antbounds('coast','black') 
+mapzoomps('nw') 
+
+%% 
+% To determine which grid points correspond to open ocean, use |isopenocean|: 
+
+ocean = isopenocean(lat,lon); 
+plotps(lat(ocean),lon(ocean),'bo')
+
+%% 
+% Perhaps your work is on Baudouin Ice Shelf. Outline it with a thick red line:
+
+antbounds('Baudouin','r','linewidth',2); 
+
+%% 
+% How many grid cells correspond to Baudouin Ice Shelf? 
+
+baudouin = isiceshelf(lat,lon,'Baudouin'); 
+sum(baudouin(:))
+
+%% 
+% Okay, so 13 grid cells correspond to Baudouin Ice Shelf. Plot them in as 
+% large red x marks: 
+
+plotps(lat(baudouin),lon(baudouin),'rx','markersize',10)
+
+%%
+% And we can add some junk to the map if we so desire: 
+
+labelshelves('fontsize',10)
+scalebarps('location','se') 
+graticuleps
+
+%% 
+% Never heard of Baudouin Ice Shelf? Well guess how big it is: 
+
+[x,y] = antbounds_data('baudouin','xy'); 
+
+pgon = polyshape(x/1000,y/1000,'Simplify',false); % req's R2017b+
+area(pgon)
+
+%% 
+% So 33,000 km^2, or about the size of Moldova. Similarly, we can see how large of 
+% an area each major glacier drains using the |basin_data| function. For example, Totten: 
+
+[x_tot,y_tot] = basin_data('imbie refined','totten','xy'); 
+
+figure
+plot(x_tot,y_tot) 
+axis image % removes whitespace, sets equal aspect ratio
+
+%% 
+% And Totten drains an area of 
+
+pgon = polyshape(x_tot/1000,y_tot/1000,'Simplify',false); % req's R2017b+
+area(pgon)
+
+%% 
+% About 550,000 km^2, or about the size of Spain. What's the average ice thickness in the Totten basin? 
+% We can load the bedmap2 data surrounding the Totten basin like this: 
+
+[lat,lon,thickness] = bedmap2_data('thickness',x_tot,y_tot); 
+
+%% 
+% Determine which Bedmap2 grid cells are drained by Totten (takes a few seconds): 
+
+totten = inbasin(lat,lon,'imbie refined','totten'); 
+
+%% 
+% The Bedmap2 dataset is 1 km by 1 km, so the total number of grid cells should 
+% be about the same as the drainage basin area we calculated above: 
+
+sum(totten(:))
+
+%% 
+% And that looks like we're on the right track. The average ice thickness drained 
+% by Totten Glacier is simply 
+
+mean(thickness(totten))
+
+%% 
+% About 3.2 km thick. 
+% 
+% We can mask out everything except the ice drained by Totten and plot: 
+
+thickness(~totten) = NaN; 
+pcolorps(lat,lon,thickness) 
+cb = colorbar; 
+ylabel(cb,'ice thickness (m)') 
+
+%% Citing this dataset
+% If you use this dataset, please cite the following: 
+% 
+% * *The dataset:* Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from 
+% Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed 
+% Active Archive Center. http://dx.doi.org/10.5067/AXE4121732AD. 
+% 
+% * *Literature citation:* Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, 
+% Science. 341. 266-270. http://dx.doi.org/10.1126/science.1235798. 
+% 
+% * *Antarctic Mapping Tools:* Greene, C. A., Gwyther, D. E., & Blankenship, D. D. Antarctic Mapping Tools for Matlab. 
+% _Computers & Geosciences_. 104 (2017) pp.151-157. <http://dx.doi.org/10.1016/j.cageo.2016.08.003 doi:10.1016/j.cageo.2016.08.003>.
+% 
+%% Author Info
+% This toolbox and supporting documentation were written by <http://www.chadagreene.com Chad A. Greene> of the University
+% of Texas Institute for Geophysics (UTIG), November 2016. Updated May 2017 for version 2 of the dataset. 
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,321 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>antbounds_data documentation</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-24"><meta name="DC.source" content="antbounds_data_documentation.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>antbounds_data</tt> documentation</h1><!--introduction--><p>The <tt>antbounds_data</tt> function returns the coordinates of line data in the MEaSURES Antarctic Boundaries for IPY 2007-2009 from Satellite Radar dataset Version 2.</p><p>The Antarctic Boundaries dataset is described on the NSIDC site <a href="http://nsidc.org/data/NSIDC-0709">here</a>. An overview of the tools in this AMT plugin can be found <a href="Antbounds_Contents.html">here</a>.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example 1: Load and plot grounding lines and coastlines</a></li><li><a href="#5">Example 2: Mask data corresponding to a specific ice shelf</a></li><li><a href="#12">Citing this dataset</a></li><li><a href="#13">Author Info</a></li></ul></div><h2 id="1">Syntax</h2><pre>[lat,lon] = antbounds_data(datatype)
+[x,y] = antbounds_data(datatype,'xy')
+[...,names] = antbounds_data('shelves')</pre><h2 id="2">Description</h2><p><tt>[lat,lon] = antbounds_data(datatype)</tt> returns the geo coordinates (lat,lon) of any of the following datatypes:</p><div><ul><li><tt>'coast'</tt>     seaward limit of the ice sheet</li><li><tt>'gl'</tt>        landward limit of flexure detected by InSAR</li><li><tt>'shelves'</tt>   a cell array of all ice 180 ice shelves in the dataset</li><li><tt>'shelfname'</tt> any of the shelf names in the dataset, must be exactly one of the following:</li></ul></div><pre>      'Abbot'                 'Getz 1'               'Porter'
+      'Abbot 1'               'Getz 2'               'PourquoiPas'
+      'Abbot 2'               'Gillet'               'Prince Harald'
+      'Abbot 3'               'Hamilton'             'Publications'
+      'Abbot 4'               'Hamilton Piedmont'    'Quar'
+      'Abbot 5'               'Hannan'               'Quatermain Point'
+      'Abbot 6'               'HarbordGlacier'       'Rayner Thyer'
+      'Ainsworth'             'Harmon Bay'           'Rennick'
+      'Alison'                'Hayes Coats Coast'    'Richter'
+      'Amery'                 'Helen'                'Riiser-Larsen'
+      'Andreyev'              'Holmes'               'Ronne'
+      'Arneb'                 'Holt'                 'Rose Point'
+      'Astrolabe'             'HornBluff'            'Ross East'
+      'Atka'                  'Hoseason'             'Ross West'
+      'Aviator'               'Hovde'                'Rund Bay'
+      'Bach'                  'Hull'                 'Rydberg Peninsula 1'
+      'Barber'                'Hummer Point'         'Rydberg Peninsula 2'
+      'Baudouin'              'Ironside'             'Sandford'
+      'Borchgrevink'          'Jackson'              'Shackleton'
+      'Brahms'                'Jelbart'              'Shirase'
+      'Britten'               'Kirkby'               'Skallen'
+      'Brunt Stancomb'        'Land'                 'Slava'
+      'Campbell'              'LarsenA'              'SmithInlet'
+      'CapeWashington'        'LarsenB'              'Sorsdal'
+      'Cheetham'              'LarsenC'              'Stange'
+      'Chugunov'              'LarsenD'              'Sulzberger'
+      'Cirque Fjord'          'LarsenD 1'            'Suter'
+      'ClarkeBay'             'LarsenE'              'Suvorov'
+      'Commandant Charcot'    'LarsenF'              'Swinburne'
+      'Conger Glenzer'        'LarsenG'              'Telen'
+      'Cook'                  'Lauritzen'            'Thomson'
+      'Cosgrove'              'Lazarev'              'Thwaites'
+      'Crosson'               'Lillie'               'Tinker'
+      'Dalk'                  'Liotard'              'Totten'
+      'Dawson Lambton'        'Mandible Cirque'      'Tracy Tremenchus'
+      'Deakin'                'Manhaul'              'Tucker'
+      'Dennistoun'            'Marin'                'Underwood'
+      'Dibble'                'Mariner'              'Utsikkar'
+      'Dotson'                'Marret'               'Venable'
+      'Drury'                 'Matusevitch'          'Verdi'
+      'Drygalski'             'May Glacier'          'Vigrid'
+      'Edward VIII'           'McLeod'               'Vincennes Bay'
+      'Ekstrom'               'Mendelssohn'          'Voyeykov'
+      'Eltanin Bay'           'Mertz'                'Walgreen Coast 1'
+      'Erebus'                'Morse'                'Walgreen Coast 2'
+      'Falkner'               'Moscow University'    'WattBay'
+      'Ferrigno'              'Moubray'              'West'
+      'Filchner'              'Mulebreen'            'Whittle'
+      'Fimbul'                'Myers'                'Wilkins'
+      'Fisher'                'Nansen'               'Williamson'
+      'Fitzgerald'            'Nickerson'            'WilmaRobertDowner'
+      'Flatnes' 'Fox Glacier' 'Ninnis'               'Withrow'
+      'Fox Ice Stream'        'Nivl'                 'Wordie (Airy Rotz Seller)'
+      'Francais'              'Noll'                 'Wordie (Cape Jeremy)'
+      'Frost'                 'Nordenskjold'         'Wordie (Harriott)'
+      'Gannutz'               'Parker'               'Wordie (Harriott Headland)'
+      'Garfield'              'Paternostro'          'Wordie (Prospect)'
+      'GeikieInlet'           'Perkins'              'Wylde'
+      'George VI'             'Philbin Inlet'        'Zelee'
+      'Getz'                  'Pine Island'          'Zubchatyy'</pre><p><tt>[x,y] = antbounds_data(datatype,'xy')</tt> returns polar stereographic (true lat 71 S) coordinates in meters.</p><p><tt>[...,names] = antbounds_data('shelves')</tt> also returns an array of ice shelf names.</p><h2 id="3">Example 1: Load and plot grounding lines and coastlines</h2><p>Load and plot a continent's worth of coast line data.  Plot the whole ice sheet as a blue patch object.</p><pre class="codeinput">[lat,lon] = antbounds_data(<span class="string">'coast'</span>);
+patchps(lat,lon,<span class="string">'blue'</span>)
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_01.png" alt=""> <p>And overlaying a red grounding line is just as easy:</p><pre class="codeinput">[gllat,gllon] = antbounds_data(<span class="string">'gl'</span>);
+plotps(gllat,gllon,<span class="string">'red'</span>)
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_02.png" alt=""> <h2 id="5">Example 2: Mask data corresponding to a specific ice shelf</h2><p>Consider a 10 km resolution grid, 700 km wide, centered on Wilkins Ice Shelf. We can use <a href="https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/content/AntarcticMappingTools/Documentation/html/psgrid_documentation.html"><tt>psgrid</tt></a> to create such a grid:</p><pre class="codeinput">[xgrid,ygrid] = psgrid(<span class="string">'wilkins ice shelf'</span>,700,10,<span class="string">'xy'</span>);
+</pre><p>That grid looks like this:</p><pre class="codeinput">plot(xgrid,ygrid,<span class="string">'.'</span>,<span class="string">'color'</span>,0.8*[1 1 1])
+axis <span class="string">image</span>
+hold <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_03.png" alt=""> <p>That doesn't tell us much, so let's put it into context of some grounding lines and coastlines.  Make them all black:</p><pre class="codeinput">antbounds(<span class="string">'gl'</span>,<span class="string">'k'</span>)
+antbounds(<span class="string">'coast'</span>,<span class="string">'k'</span>)
+antbounds(<span class="string">'shelves'</span>,<span class="string">'k'</span>)
+scalebarps
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_04.png" alt=""> <p>If you want to find all your grid points that correspond to any ice shelf, the best tool for that is the <a href="isiceshelf.html"><tt>isiceshelf</tt></a> function.  Let's identify ALL ice shelf grid points as black x marks:</p><pre class="codeinput">shelf = isiceshelf(xgrid,ygrid);
+plot(xgrid(shelf),ygrid(shelf),<span class="string">'kx'</span>)
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_05.png" alt=""> <p>But what if you're only interested in Wilkins Ice Shelf?  The easiest way to determine which grid points are within the Wilkins Ice Shelf polygon is to load the outline of Wilkins Ice Shelf via <tt>antbounds_data</tt>, then use the Matlab function <tt>inpolygon</tt> to determine which points are inside the Wilkins outline.  Start by loading the polygon and plot it as a thick red line:</p><pre class="codeinput">[wx,wy] = antbounds_data(<span class="string">'wilkins'</span>,<span class="string">'xy'</span>);
+plot(wx,wy,<span class="string">'r'</span>,<span class="string">'linewidth'</span>,2)
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_06.png" alt=""> <p>Now determine which grid points are inside the Wilkins outline and plot thos grid points as red circles:</p><pre class="codeinput">wilkins = inpolygon(xgrid,ygrid,wx,wy);
+plot(xgrid(wilkins),ygrid(wilkins),<span class="string">'ro'</span>)
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_07.png" alt=""> <p>Now label the ice shelves and use <a href="https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/content/AntarcticMappingTools/Documentation/html/mapzoomps_documentation.html"><tt>mapzoomps</tt></a> to place an inset map in the upper right hand ('ne') corner. Below I'm using my <a href="https://www.mathworks.com/matlabcentral/fileexchange/46872-intuitive-rgb-color-values-from-xkcd/content/XKCD_RGB/html/rgb_demo.html"><tt>rgb</tt></a> function to automatically give the RGB values of dark blue</p><pre class="codeinput">labelshelves(<span class="string">'fontweight'</span>,<span class="string">'bold'</span>,<span class="string">'fontsize'</span>,20,<span class="string">'color'</span>,rgb(<span class="string">'dark blue'</span>))
+mapzoomps(<span class="string">'ne'</span>)
+</pre><img vspace="5" hspace="5" src="antbounds_data_documentation_08.png" alt=""> <h2 id="12">Citing this dataset</h2><p>If you use this dataset, please cite the following:</p><div><ul><li><b>The dataset:</b> Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. <a href="http://dx.doi.org/10.5067/AXE4121732AD">http://dx.doi.org/10.5067/AXE4121732AD</a>.</li></ul></div><div><ul><li><b>Literature citation:</b> Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, Science. 341. 266-270. <a href="http://dx.doi.org/10.1126/science.1235798">http://dx.doi.org/10.1126/science.1235798</a>.</li></ul></div><div><ul><li><b>Antarctic Mapping Tools:</b> Greene, C. A., Gwyther, D. E., &amp; Blankenship, D. D. Antarctic Mapping Tools for Matlab. <i>Computers &amp; Geosciences</i>. 104 (2017) pp.151-157. <a href="http://dx.doi.org/10.1016/j.cageo.2016.08.003">doi:10.1016/j.cageo.2016.08.003</a>.</li></ul></div><h2 id="13">Author Info</h2><p>This function and supporting documentation were written by <a href="http://www.chadagreene.com">Chad A. Greene</a> of the University of Texas Institute for Geophysics (UTIG), November 2016. Updated May 2017.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |antbounds_data| documentation 
+% The |antbounds_data| function returns the coordinates of line data in the MEaSURES Antarctic Boundaries 
+% for IPY 2007-2009 from Satellite Radar dataset Version 2.
+% 
+% The Antarctic Boundaries dataset is described on the NSIDC site <http://nsidc.org/data/NSIDC-0709 here>. 
+% An overview of the tools in this AMT plugin can be found <Antbounds_Contents.html here>.
+% 
+%% Syntax
+% 
+%  [lat,lon] = antbounds_data(datatype)
+%  [x,y] = antbounds_data(datatype,'xy')
+%  [...,names] = antbounds_data('shelves')
+% 
+%% Description
+% 
+% |[lat,lon] = antbounds_data(datatype)| returns the geo coordinates (lat,lon) of any of the following
+% datatypes: 
+% 
+% * |'coast'|     seaward limit of the ice sheet
+% * |'gl'|        landward limit of flexure detected by InSAR
+% * |'shelves'|   a cell array of all ice 180 ice shelves in the dataset
+% * |'shelfname'| any of the shelf names in the dataset, must be exactly one of the following: 
+%
+%        'Abbot'                 'Getz 1'               'Porter'                    
+%        'Abbot 1'               'Getz 2'               'PourquoiPas'               
+%        'Abbot 2'               'Gillet'               'Prince Harald'             
+%        'Abbot 3'               'Hamilton'             'Publications'              
+%        'Abbot 4'               'Hamilton Piedmont'    'Quar'                      
+%        'Abbot 5'               'Hannan'               'Quatermain Point'          
+%        'Abbot 6'               'HarbordGlacier'       'Rayner Thyer'              
+%        'Ainsworth'             'Harmon Bay'           'Rennick'                   
+%        'Alison'                'Hayes Coats Coast'    'Richter'                   
+%        'Amery'                 'Helen'                'Riiser-Larsen'             
+%        'Andreyev'              'Holmes'               'Ronne'                     
+%        'Arneb'                 'Holt'                 'Rose Point'                
+%        'Astrolabe'             'HornBluff'            'Ross East'                 
+%        'Atka'                  'Hoseason'             'Ross West'                 
+%        'Aviator'               'Hovde'                'Rund Bay'                  
+%        'Bach'                  'Hull'                 'Rydberg Peninsula 1'       
+%        'Barber'                'Hummer Point'         'Rydberg Peninsula 2'       
+%        'Baudouin'              'Ironside'             'Sandford'                  
+%        'Borchgrevink'          'Jackson'              'Shackleton'                
+%        'Brahms'                'Jelbart'              'Shirase'                   
+%        'Britten'               'Kirkby'               'Skallen'                   
+%        'Brunt Stancomb'        'Land'                 'Slava'                     
+%        'Campbell'              'LarsenA'              'SmithInlet'                
+%        'CapeWashington'        'LarsenB'              'Sorsdal'                   
+%        'Cheetham'              'LarsenC'              'Stange'                    
+%        'Chugunov'              'LarsenD'              'Sulzberger'                
+%        'Cirque Fjord'          'LarsenD 1'            'Suter'                     
+%        'ClarkeBay'             'LarsenE'              'Suvorov'                   
+%        'Commandant Charcot'    'LarsenF'              'Swinburne'                 
+%        'Conger Glenzer'        'LarsenG'              'Telen'                     
+%        'Cook'                  'Lauritzen'            'Thomson'                   
+%        'Cosgrove'              'Lazarev'              'Thwaites'                  
+%        'Crosson'               'Lillie'               'Tinker'                    
+%        'Dalk'                  'Liotard'              'Totten'                    
+%        'Dawson Lambton'        'Mandible Cirque'      'Tracy Tremenchus'          
+%        'Deakin'                'Manhaul'              'Tucker'                    
+%        'Dennistoun'            'Marin'                'Underwood'                 
+%        'Dibble'                'Mariner'              'Utsikkar'                  
+%        'Dotson'                'Marret'               'Venable'                   
+%        'Drury'                 'Matusevitch'          'Verdi'                     
+%        'Drygalski'             'May Glacier'          'Vigrid'                    
+%        'Edward VIII'           'McLeod'               'Vincennes Bay'             
+%        'Ekstrom'               'Mendelssohn'          'Voyeykov'                  
+%        'Eltanin Bay'           'Mertz'                'Walgreen Coast 1'          
+%        'Erebus'                'Morse'                'Walgreen Coast 2'          
+%        'Falkner'               'Moscow University'    'WattBay'                   
+%        'Ferrigno'              'Moubray'              'West'                      
+%        'Filchner'              'Mulebreen'            'Whittle'                   
+%        'Fimbul'                'Myers'                'Wilkins'                   
+%        'Fisher'                'Nansen'               'Williamson'                
+%        'Fitzgerald'            'Nickerson'            'WilmaRobertDowner'         
+%        'Flatnes' 'Fox Glacier' 'Ninnis'               'Withrow'                   
+%        'Fox Ice Stream'        'Nivl'                 'Wordie (Airy Rotz Seller)' 
+%        'Francais'              'Noll'                 'Wordie (Cape Jeremy)'      
+%        'Frost'                 'Nordenskjold'         'Wordie (Harriott)'         
+%        'Gannutz'               'Parker'               'Wordie (Harriott Headland)'
+%        'Garfield'              'Paternostro'          'Wordie (Prospect)'         
+%        'GeikieInlet'           'Perkins'              'Wylde'                     
+%        'George VI'             'Philbin Inlet'        'Zelee'                     
+%        'Getz'                  'Pine Island'          'Zubchatyy'  
+%
+% |[x,y] = antbounds_data(datatype,'xy')| returns polar stereographic (true lat 71 S) coordinates in meters. 
+% 
+% |[...,names] = antbounds_data('shelves')| also returns an array of ice shelf names. 
+% 
+%% Example 1: Load and plot grounding lines and coastlines
+% Load and plot a continent's worth of coast line data.  Plot the whole ice sheet as a blue patch object. 
+
+[lat,lon] = antbounds_data('coast'); 
+patchps(lat,lon,'blue') 
+
+%%
+% And overlaying a red grounding line is just as easy: 
+
+[gllat,gllon] = antbounds_data('gl'); 
+plotps(gllat,gllon,'red') 
+
+%% Example 2: Mask data corresponding to a specific ice shelf
+% Consider a 10 km resolution grid, 700 km wide, centered on Wilkins Ice Shelf. We can use <https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/content/AntarcticMappingTools/Documentation/html/psgrid_documentation.html 
+% |psgrid|> to create such a grid: 
+
+[xgrid,ygrid] = psgrid('wilkins ice shelf',700,10,'xy'); 
+
+%% 
+% That grid looks like this: 
+
+plot(xgrid,ygrid,'.','color',0.8*[1 1 1])
+axis image
+hold on
+
+%% 
+% That doesn't tell us much, so let's put it into context of some grounding lines and coastlines.  Make them all
+% black: 
+
+antbounds('gl','k') 
+antbounds('coast','k') 
+antbounds('shelves','k') 
+scalebarps
+
+%% 
+% If you want to find all your grid points that correspond to any ice shelf, the best tool for that is the <isiceshelf.html |isiceshelf|> 
+% function.  Let's identify ALL ice shelf grid points as black x marks: 
+
+shelf = isiceshelf(xgrid,ygrid); 
+plot(xgrid(shelf),ygrid(shelf),'kx')
+
+%% 
+% But what if you're only interested in Wilkins Ice Shelf?  The easiest way to determine which grid points are within the 
+% Wilkins Ice Shelf polygon is to load the outline of Wilkins Ice Shelf via |antbounds_data|, then use the Matlab function 
+% |inpolygon| to determine which points are inside the Wilkins outline.  Start by loading the polygon and plot it as a thick 
+% red line: 
+
+[wx,wy] = antbounds_data('wilkins','xy'); 
+plot(wx,wy,'r','linewidth',2)
+
+%% 
+% Now determine which grid points are inside the Wilkins outline and plot thos grid points as red circles: 
+
+wilkins = inpolygon(xgrid,ygrid,wx,wy); 
+plot(xgrid(wilkins),ygrid(wilkins),'ro') 
+
+%% 
+% Now label the ice shelves and use <https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/content/AntarcticMappingTools/Documentation/html/mapzoomps_documentation.html 
+% |mapzoomps|> to place an inset map in the upper right hand ('ne') corner. Below I'm using my <https://www.mathworks.com/matlabcentral/fileexchange/46872-intuitive-rgb-color-values-from-xkcd/content/XKCD_RGB/html/rgb_demo.html
+% |rgb|> function to automatically give the RGB values of dark blue
+
+labelshelves('fontweight','bold','fontsize',20,'color',rgb('dark blue'))
+mapzoomps('ne') 
+
+%% Citing this dataset
+% If you use this dataset, please cite the following: 
+% 
+% * *The dataset:* Mouginot, J., B. Scheuchl, and E. Rignot. 2017. MEaSUREs Antarctic Boundaries for IPY 2007-2009 from 
+% Satellite Radar, Version 2. [Indicate subset used]. Boulder, Colorado USA. NASA National Snow and Ice 
+% Data Center Distributed Active Archive Center. http://dx.doi.org/10.5067/AXE4121732AD. 
+% 
+% * *Literature citation:* Rignot, E., S. S. Jacobs, J. Mouginot, and B. Scheuchl. 2013. Ice-shelf melting around Antarctica, 
+% Science. 341. 266-270. http://dx.doi.org/10.1126/science.1235798. 
+% 
+% * *Antarctic Mapping Tools:* Greene, C. A., Gwyther, D. E., & Blankenship, D. D. Antarctic Mapping Tools for Matlab. 
+% _Computers & Geosciences_. 104 (2017) pp.151-157. <http://dx.doi.org/10.1016/j.cageo.2016.08.003 doi:10.1016/j.cageo.2016.08.003>.
+% 
+%% Author Info
+% This function and supporting documentation were written by <http://www.chadagreene.com Chad A. Greene> of the University
+% of Texas Institute for Geophysics (UTIG), November 2016. Updated May 2017. 
+##### SOURCE END #####
+--></body></html>
