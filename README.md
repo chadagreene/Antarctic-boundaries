@@ -1,4 +1,6 @@
 # Antarctic boundaries
+[![View Antarctic boundaries, grounding line, and masks from InSAR on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/60246-antarctic-boundaries-grounding-line-and-masks-from-insar)
+
 A complete MEaSUREs grounding line, coast line, and mask dataset from Mouginot et al. 2017.
 
 ![](documentation/html/antbounds.png)
