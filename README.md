@@ -6,6 +6,13 @@ A complete MEaSUREs grounding line, coast line, and mask dataset from Mouginot e
 # Requirements 
 You'll need [Antarctic Mapping Tools for MATLAB](https://github.com/chadagreene/Antarctic-Mapping-Tools).
 
+# Documentation 
+To view documentation online, click on the [Examples tab on the File Exchange page here](https://www.mathworks.com/matlabcentral/fileexchange/60246).
+
+To view documentation from within Matlab, simply type `amt` followed by the fuction name into the Command Window. For example, to view the documentation for the `isiceshelf` fuction, type 
+
+    amt isiceshelf
+
 # Contents 
 ### Data Loading
 This toolbox contains all the data you need, but you read about the data, so there's no need to download any data, but you can read about the data [here](https://nsidc.org/data/NSIDC-0709) if you would like. These functions make it easy to import the grounding lines, coast lines, ice shelf outlines, and ice basins into Matlab:
