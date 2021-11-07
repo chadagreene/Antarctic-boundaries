@@ -79,39 +79,26 @@ mapisopen = ~isequal(axis,[0 1 0 1]);
 
 load iceshelves_2008_v2.mat
 
-if verLessThan('matlab','9.3')
-   % Use the mean location for text label placement: 
-   xc = cellfun(@nanmean,x); 
-   yc = cellfun(@nanmean,y); 
-else
-   % Use the centroid: 
-   xc = nan(size(name)); 
-   yc = nan(size(name)); 
-   for k = 1:length(name)
-      [xc(k),yc(k)] = centroid(polyshape(x{k},y{k},'Simplify',false)); 
-   end
-end
-
 % Convert to kilometers: 
 if plotkm
-   xc = xc/1000; 
-   yc = yc/1000; 
+   x_center = pad',pad/1000; 
+   y_center = y_center/1000; 
 end
 
 
 % If a map is already open, trim the dataset to the current limits: 
 if mapisopen
-   in = inpsquad(xc,yc,xlim,ylim); 
-   xc = xc(in); 
-   yc = yc(in); 
+   in = inpsquad(x_center,y_center,xlim,ylim); 
+   x_center = x_center(in); 
+   y_center = y_center(in); 
    name = name(in); 
 else
-   axis([min(xc) max(xc) min(yc) max(yc)])
+   axis([min(x_center) max(x_center) min(y_center) max(y_center)])
 end
 
 %% Place labels
 
-h = text(xc,yc,name,'horiz','center','vert','middle',varargin{:}); 
+h = text(x_center,y_center,name,'horiz','center','vert','middle','clipping','on',varargin{:}); 
 
 %% Put things back the way we found them: 
 
